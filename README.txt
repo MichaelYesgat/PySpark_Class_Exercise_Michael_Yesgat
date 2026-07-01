@@ -1,0 +1,2 @@
+Class exercises for Apache Spark and PySpark 
+By Michael Yesgat
