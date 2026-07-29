@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI Event Demo</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Event Demo</h1>
+    <p>Click a button to send a POST request to FastAPI.</p>
+
+    <button onclick="sendEvent('order')">order event</button>
+    <button onclick="sendEvent('navigation')">navigation event</button>
+
+    <p id="status">No event sent yet.</p>
+
+    <script>
+        async function sendEvent(eventType) {
+            const status = document.getElementById("status");
+
+            try {
+                const response = await fetch(`/events/${eventType}`, {
+                    method: "POST"
+                });
+
+                const data = await response.json();
+                status.textContent = data.message;
+            } catch (error) {
+                status.textContent = "Could not send the event.";
+            }
+        }
+    </script>
+</body>
+</html>
